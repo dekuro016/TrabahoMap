@@ -952,3 +952,17 @@ ul.ticks li::before { content: "✓"; position: absolute; left: 0; color: var(--
 /* The brand panel clips its background pattern (overflow: hidden), so give grid rows their full content height */
 .welcome { grid-auto-rows: minmax(100%, max-content); }
 @media (max-width: 900px) { .welcome { grid-auto-rows: max-content; } }
+.map-failed { display: grid; place-items: center; text-align: center; padding: 20px; color: var(--ink-2); background: repeating-linear-gradient(45deg, var(--sage-100) 0 12px, var(--sage-50) 12px 24px); }
+.map-failed > div { display: grid; gap: 4px; max-width: 360px; }
+
+/* ---------- v5.1: profile menu on phones ---------- */
+/* While the menu is open, lift the whole top bar above the tab bar, the AI button and the privacy notice. */
+.topbar:has(.menu-pop) { z-index: 2600; }
+/* Long demo names wrap like a sentence instead of pushing the role to the far right. */
+.menu-demo .menu-item { display: block; }
+@media (max-width: 900px) {
+  /* The nav is hidden here, but ".nav ~ .top-actions" still matched it and removed the auto margin,
+     so the profile button sat next to the logo and its menu opened off the left edge of the screen. */
+  .nav ~ .top-actions, .top-actions { margin-left: auto; }
+  .menu-pop { width: min(300px, calc(100vw - 28px)); max-height: calc(100vh - 96px); max-height: calc(100dvh - 96px); }
+}
